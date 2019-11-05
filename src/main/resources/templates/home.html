@@ -6,7 +6,15 @@
 </head>
 <body>
 
-<h1>This is the home page</h1>
+<div th:replace="fragments/navbar :: main-navbar"></div>
+
+<h1>Featured Ads</h1>
+
+<div class="card" th:each="ad : ${ads}">
+    <h1 th:text="${ad.title}"></h1>
+    <p th:text="${ad.description}"></p>
+    <input type="hidden" name="id" th:value="${ad.id}">
+</div>
 
 </body>
 </html>
