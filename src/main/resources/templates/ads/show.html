@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <th:block th:replace="fragments/header :: main-header(false)"/>
+</head>
+<body>
+
+<div th:replace="fragments/navbar :: main-navbar"></div>
+
+<div class="card">
+    <h1 th:text="${ad.title}"></h1>
+    <p th:text="${ad.description}"></p>
+    <input type="hidden" name="id" th:value="${ad.id}">
+</div>
+<th:block th:replace="fragments/footer :: main-footer"/>
+</body>
+</html>

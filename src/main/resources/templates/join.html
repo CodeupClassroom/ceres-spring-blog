@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Join</title>
+    <th:block th:replace="fragments/header :: main-header(true)"/>
+    <link rel="stylesheet" href="/css/paid.css">
+</head>
+<body>
+
+<h1 th:text="${msg}"></h1>
+
+<form action="/join" method="post">
+    <input type="text" name="team" id="cohort-ip" class="field" />
+    <button>Join now</button>
+</form>
+
+<h2 th:if="${students != null}">Students list</h2>
+
+<ul>
+    <li th:each="student : ${students}" th:text="${student}"></li>
+</ul>
+
+<div th:each="student : ${students}">
+    <p th:text="${student}"></p>
+</div>
+<th:block th:replace="fragments/footer :: main-footer"/>
+</body>
+</html>
