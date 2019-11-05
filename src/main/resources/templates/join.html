@@ -13,5 +13,15 @@
     <button>Join now</button>
 </form>
 
+<h2 th:if="${students != null}">Students list</h2>
+
+<ul>
+    <li th:each="student : ${students}" th:text="${student}"></li>
+</ul>
+
+<div th:each="student : ${students}">
+    <p th:text="${student}"></p>
+</div>
+
 </body>
 </html>
