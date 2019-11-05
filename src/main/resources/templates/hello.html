@@ -3,10 +3,13 @@
 <head>
     <meta charset="UTF-8" />
     <title>Hello</title>
+    <th:block th:replace="fragments/header :: main-header"/>
 </head>
 <body>
 
 <h1>Hello, <span th:text="${name}"></span></h1>
 
+
+<th:block th:replace="fragments/footer :: main-footer"/>
 </body>
 </html>

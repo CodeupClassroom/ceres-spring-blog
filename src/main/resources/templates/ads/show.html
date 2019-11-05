@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <th:block th:replace="fragments/header :: main-header"/>
 </head>
 <body>
 
@@ -13,6 +14,6 @@
     <p th:text="${ad.description}"></p>
     <input type="hidden" name="id" th:value="${ad.id}">
 </div>
-
+<th:block th:replace="fragments/footer :: main-footer"/>
 </body>
 </html>
