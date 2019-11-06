@@ -1,9 +1,21 @@
 package com.codeup.blog;
 
+
+import javax.persistence.*;
+
+@Entity
+@Table(name = "ads")
 public class Ad {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(columnDefinition = "int(11) UNSIGNED")
     private long id;
+
+    @Column(length = 100, nullable = false, unique = true)
     private String title;
+
+    @Column(columnDefinition = "TEXT")
     private String description;
 
     public Ad(long id, String title, String description) {
