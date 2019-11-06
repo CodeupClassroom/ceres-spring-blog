@@ -30,17 +30,35 @@ public class AdController {
     }
 
     @GetMapping("/ads/create")
-    @ResponseBody
     public String showCreateForm(){
-        return "view the form for creating a ad";
+        return "ads/create";
     }
 
     @PostMapping("/ads/create")
-    @ResponseBody
     public String create(@RequestParam String title, @RequestParam String body){
-        System.out.println("title = " + title);
-        System.out.println("body = " + body);
-        return "create a new ad";
+        Ad ad = adDao.save(new Ad(title, body));
+        return "redirect:/ads/" + ad.getId();
+    }
+
+    @GetMapping("/ads/{id}/edit")
+    public String edit(@PathVariable long id, Model viewModel) {
+        viewModel.addAttribute("ad", adDao.getOne(id));
+        return "ads/edit";
+    }
+
+    @PostMapping("/ads/{id}/edit")
+    public String update(@PathVariable long id, @RequestParam String title, @RequestParam String description) {
+        Ad oldAd = adDao.getOne(id);
+        oldAd.setTitle(title);
+        oldAd.setDescription(description);
+        adDao.save(oldAd);
+        return "redirect:/ads/" + id;
+    }
+
+    @PostMapping("/ads/{id}/delete")
+    public String delete(@PathVariable long id) {
+        adDao.deleteById(id);
+        return "redirect:/ads";
     }
 
     // Repository Testing for JPA Lecture

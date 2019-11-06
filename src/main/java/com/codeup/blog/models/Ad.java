@@ -21,6 +21,11 @@ public class Ad {
     public Ad() {
     }
 
+    public Ad(String title, String description) {
+        this.title = title;
+        this.description = description;
+    }
+
     public Ad(long id, String title, String description) {
         this.id = id;
         this.title = title;
