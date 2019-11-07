@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Ad</title>
+    <th:block th:replace="fragments/header :: main-header(false)"/>
+</head>
+<body>
+
+<div th:replace="fragments/navbar :: main-navbar"></div>
+
+<div class="container mt-3">
+    <header class="jumbotron my-3">
+        <h1 class="display-3 text-center">Edit Ad</h1>
+    </header>
+    <div class="card p-3">
+        <form th:action="'/ads/' + ${ad.id} + '/edit'" th:method="post">
+            <div class="form-group">
+                <label for="title">Title</label>
+                <input class="form-control" id="title" type="text" th:value="${ad.title}" name="title">
+            </div>
+            <div class="form-group">
+                <label for="description">Description</label>
+                <textarea class="form-control" id="description" th:text="${ad.description}" name="description"></textarea>
+            </div>
+            <button class="btn btn-warning btn-block">Update</button>
+        </form>
+    </div>
+</div>
+<th:block th:replace="fragments/footer :: main-footer"/>
+</body>
+</html>
