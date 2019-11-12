@@ -3,6 +3,8 @@ package com.codeup.blog.controllers;
 import com.codeup.blog.models.Ad;
 import com.codeup.blog.repositories.AdRepository;
 import com.codeup.blog.repositories.UserRepository;
+import com.codeup.blog.services.EmailService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +16,9 @@ public class AdController {
 
     private final AdRepository adDao;
     private final UserRepository userDao;
+
+    @Autowired
+    EmailService emailService;
 
     public AdController(AdRepository adDao, UserRepository userDao) {
         this.adDao = adDao;
@@ -44,6 +49,7 @@ public class AdController {
         System.out.println("timeout = " + timeout);
         adToBeCreated.setUser(userDao.getOne(1L));
         Ad savedAd = adDao.save(adToBeCreated);
+        emailService.prepareAndSend(savedAd, "Ad created", "An Ad has been created, with the id of " + savedAd.getId());
         return "redirect:/ads/" + savedAd.getId();
     }
 
