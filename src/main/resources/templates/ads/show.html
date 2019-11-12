@@ -18,6 +18,7 @@
     <div class="card p-3">
         <h1 th:text="${ad.title}"></h1>
         <p th:text="${ad.description}"></p>
+        <p>Created by: <span th:text="${ad.user.email}"></span></p>
         <input type="hidden" name="id" th:value="${ad.id}">
         <a th:href="@{'/ads/' + ${ad.id} + '/edit'}" class="btn btn-warning">Edit Ad</a>
         <form th:action="@{'/ads/' + ${ad.id} + '/delete'}" method="post">
