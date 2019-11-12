@@ -33,16 +33,18 @@ public class AdController {
     }
 
     @GetMapping("/ads/create")
-    public String showCreateForm(){
+    public String showCreateForm(Model vModel){
+        vModel.addAttribute("ad" , new Ad());
         return "ads/create";
     }
 
     @PostMapping("/ads/create")
-    public String create(@RequestParam String title, @RequestParam String description){
-        Ad adToInsert = new Ad(title, description);
-        adToInsert.setUser(userDao.getOne(1L));
-        Ad ad = adDao.save(adToInsert);
-        return "redirect:/ads/" + ad.getId();
+    public String create(@ModelAttribute Ad adToBeCreated,
+                         @RequestParam(name = "timeout") String timeout){
+        System.out.println("timeout = " + timeout);
+        adToBeCreated.setUser(userDao.getOne(1L));
+        Ad savedAd = adDao.save(adToBeCreated);
+        return "redirect:/ads/" + savedAd.getId();
     }
 
     @GetMapping("/ads/{id}/edit")
