@@ -10,6 +10,12 @@
     <ul class="navbar-nav ml-auto">
         <li class="nav-item mx-3"><a href="/register">Register</a></li>
         <li class="nav-item mx-3"><a href="/login">Login</a></li>
+        <!-- LOGOUT LIST ITEM -->
+        <li class="d-flex align-items-center mx-3">
+            <form class="d-flex align-items-center" th:action="@{/logout}" th:method="post">
+                <button style="border:none !important" class="btn-link btn p-0">Logout</button>
+            </form>
+        </li>
     </ul>
 </nav>
 
