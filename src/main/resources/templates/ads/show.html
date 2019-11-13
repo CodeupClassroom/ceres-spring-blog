@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>View Ad</title>
@@ -20,10 +20,17 @@
         <p th:text="${ad.description}"></p>
         <p>Created by: <span th:text="${ad.user.email}"></span></p>
         <input type="hidden" name="id" th:value="${ad.id}">
-        <a th:href="@{'/ads/' + ${ad.id} + '/edit'}" class="btn btn-warning">Edit Ad</a>
-        <form th:action="@{'/ads/' + ${ad.id} + '/delete'}" method="post">
-            <button class="btn btn-danger btn-block">Delete Ad</button>
-        </form>
+
+        <div sec:authorize="isAuthenticated()">
+
+            <th:block th:if="${ad.user.id == #authentication.principal.id}">
+                <a th:href="@{'/ads/' + ${ad.id} + '/edit'}" class="btn btn-warning">Edit Ad</a>
+                <form th:action="@{'/ads/' + ${ad.id} + '/delete'}" method="post">
+                    <button class="btn btn-danger btn-block">Delete Ad</button>
+                </form>
+            </th:block>
+        </div>
+
     </div>
 
 </div>
