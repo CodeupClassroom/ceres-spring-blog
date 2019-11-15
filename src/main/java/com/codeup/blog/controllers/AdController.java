@@ -49,7 +49,10 @@ public class AdController {
         System.out.println("timeout = " + timeout);
         adToBeCreated.setUser(userDao.getOne(1L));
         Ad savedAd = adDao.save(adToBeCreated);
-        emailService.prepareAndSend(savedAd, "Ad created", "An Ad has been created, with the id of " + savedAd.getId());
+        emailService.prepareAndSend(
+                savedAd,
+                "Ad created",
+                String.format("Your new Ad has been created, with the id of <a href='/ads/%s' target='_blank'>%s</a>", savedAd.getId(), savedAd.getId()));
         return "redirect:/ads/" + savedAd.getId();
     }
 
